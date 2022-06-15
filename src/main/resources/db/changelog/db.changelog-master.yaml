@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1654708727773-1
+      author: Mitki (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+
+
+
