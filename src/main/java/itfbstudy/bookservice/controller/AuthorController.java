@@ -1,12 +1,16 @@
 package itfbstudy.bookservice.controller;
+import io.micrometer.core.instrument.MeterRegistry;
 import itfbstudy.bookservice.advice.Response;
 import itfbstudy.bookservice.enteties.Author;
 import itfbstudy.bookservice.service.AuthorService;
+import lombok.extern.log4j.Log4j;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
