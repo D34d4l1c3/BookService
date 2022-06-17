@@ -46,9 +46,7 @@ public class BookController {
     @GetMapping("")
     @Counted(value = "allBooksReqCount")
     public List<Book> findAllBooks() {
-        System.out.println("GET_ALLLLL");
-        //counter.increment();
-        return new ArrayList<Book>();
+        return service.getBooks();
     }
 
     @PostMapping("/addBook")
@@ -57,14 +55,13 @@ public class BookController {
         System.out.println("POOOOOOST");
         return service.saveBook(book);
     }
-    @GetMapping("/myMeter")
-    @ResponseBody
-    public CountedAspect getMetric() {
-        System.out.println(countedAspect);
-//        System.out.println(counter.count());
-        System.out.println();
-        return countedAspect;
+    @PostMapping("/updateBook")
+    @Counted(value = "updateBookReqCount")
+    public Book updateBook(@RequestBody Book book) {
+        System.out.println("test");
+        return service.updateBook(book);
     }
+
     @GetMapping(value = "/error", produces = APPLICATION_JSON_VALUE)
     public Response testDefaultControllerAdvice(@RequestParam(required = false, defaultValue = "false") boolean exception)
             throws Exception {
@@ -76,10 +73,7 @@ public class BookController {
     @GetMapping("/{id}")
     @Counted(value = "getBookByIdReqCount")
     public Book findBookById(@PathVariable int id) {
-        System.out.println("bookById!!!!!!!! "+id);
-        // service.getBookById(Integer.getInteger(id));
         return service.getBookById(id);
-        // return id +" Annababa";
     }
 
 }

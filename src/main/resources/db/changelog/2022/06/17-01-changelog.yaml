@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1655464049200-1
+      author: Mitki (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_audit
+                  name: id
+                  type: INT
+              - column:
+                  name: operation
+                  type: VARCHAR(255)
+              - column:
+                  name: category
+                  type: VARCHAR(255)
+              - column:
+                  name: call_datetime
+                  type: DATETIME
+            tableName: audit
+  - changeSet:
+      id: 1655464049200-2
+      author: Mitki (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropPrimaryKey:
+            constraintName: pk_author_books
+            tableName: author_books
+
