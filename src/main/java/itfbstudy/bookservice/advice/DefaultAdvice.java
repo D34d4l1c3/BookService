@@ -1,22 +1,39 @@
 package itfbstudy.bookservice.advice;
 
-import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Aspect;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@ControllerAdvice
+@RestControllerAdvice
 @Log4j2
 public class DefaultAdvice {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Response> handleException(Exception e) {
-        Response response = new Response(e.getMessage());
-        log.error("Anna banana "+e.getMessage());
-        System.out.println("MY_COMMON_ERROR_HANDLE_BITCH: "+e.getMessage());
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        Response response = new Response();
+        log.error(e.getMessage());
+        response.setMessage(e.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(AuthorNotFound.class)
+    public ResponseEntity<Response> handleException(AuthorNotFound e) {
+        Response response = new Response();
+        response.setMessage(e.getType());
+        log.error(response.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(BookNotFound.class)
+    public ResponseEntity<Response> handleException(BookNotFound e) {
+        Response response = new Response();
+        response.setMessage(e.getType());
+        log.error(response.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
 }

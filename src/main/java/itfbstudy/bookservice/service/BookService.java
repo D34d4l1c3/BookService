@@ -1,5 +1,6 @@
 package itfbstudy.bookservice.service;
 
+import itfbstudy.bookservice.advice.BookNotFound;
 import itfbstudy.bookservice.enteties.Author;
 import itfbstudy.bookservice.enteties.Book;
 import itfbstudy.bookservice.repository.AuthorRepository;
@@ -31,11 +32,9 @@ public class BookService {
         return repository.findAll();
     }
     public Book getBookById(int id) {
-        return Optional.of(repository.findById(id)).orElse(null);
-    }
-
-    public List<Book> getBookByName(String name) {
-        return repository.findByName(name);
+        Book book = repository.findById(id);
+        if(book == null) throw new BookNotFound();
+        return book;
     }
 
     public String deleteBook(int id) {
@@ -45,12 +44,11 @@ public class BookService {
 
     public Book updateBook(Book Book) {
         System.out.println("Service updateBook");
-        Book existingBook = Optional.of(repository.findById(Book.getId())).orElse(null);
+        Book existingBook = Optional.of(repository.findById(Book.getId())).orElseThrow(BookNotFound::new);
         existingBook.setName(Book.getName() == null ? existingBook.getName() : Book.getName());
         existingBook.setGenre(Book.getGenre() == null ? existingBook.getGenre() : Book.getGenre());
         existingBook.setReview(Book.getReview() == null ? existingBook.getReview() : Book.getReview());
         List<Author> authors= Book.getAuthors();
-        List<Author> authors2= existingBook.getAuthors();
 
         if (Book.getAuthors() == null) {
             System.out.println("нету авторов?");

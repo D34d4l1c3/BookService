@@ -1,4 +1,5 @@
 package itfbstudy.bookservice.service;
+import itfbstudy.bookservice.advice.AuthorNotFound;
 import itfbstudy.bookservice.enteties.Author;
 import itfbstudy.bookservice.repository.AuthorRepository;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,8 @@ public class AuthorService {
     }
     public Author getAuthorById(int id) {
         Author author = repository.findById(id);
-        System.out.println(111);
-        return Optional.of(author).orElse(null);
+        if (author == null) throw new AuthorNotFound();
+        return author;
     }
 
     public List<Author> getAuthorByName(String fullname) {

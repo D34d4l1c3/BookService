@@ -1,5 +1,6 @@
 package itfbstudy.bookservice.controller;
 import io.micrometer.core.instrument.MeterRegistry;
+import itfbstudy.bookservice.advice.AuthorNotFound;
 import itfbstudy.bookservice.advice.Response;
 import itfbstudy.bookservice.enteties.Author;
 import itfbstudy.bookservice.service.AuthorService;
@@ -8,6 +9,8 @@ import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -29,7 +32,6 @@ public class AuthorController {
 
     @PostMapping("/addAuthor")
     public Author addAuthor(@RequestBody Author author) {
-        System.out.println("POOOOOOST__author");
         return service.saveAuthor(author);
     }
     @GetMapping(value = "/error", produces = APPLICATION_JSON_VALUE)
@@ -42,7 +44,7 @@ public class AuthorController {
     }
 
     @GetMapping("/{id}")
-    public Author findAuthorById(@PathVariable int id) {
+    public Author findAuthorById(@PathVariable int id){
         System.out.println("authorById!!!!!!!! "+id);
         return service.getAuthorById(id);
     }

@@ -55,7 +55,12 @@ public class BookController {
         System.out.println("POOOOOOST");
         return service.saveBook(book);
     }
-    @PostMapping("/updateBook")
+    @DeleteMapping("/{id}")
+    @Counted(value = "deleteBookReqCount")
+    public String deleteBook(@PathVariable int id) {
+        return service.deleteBook(id);
+    }
+    @PostMapping("/updateBook/{id}")
     @Counted(value = "updateBookReqCount")
     public Book updateBook(@RequestBody Book book) {
         System.out.println("test");
