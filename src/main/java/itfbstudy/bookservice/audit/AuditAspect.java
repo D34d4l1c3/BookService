@@ -9,6 +9,8 @@ import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
+
 @Aspect
 @Component
 @Log4j2
@@ -17,20 +19,23 @@ public class AuditAspect {
     public AuditAspect(AuditRepository repository){
         this.repository=repository;
     }
-    @Pointcut("execution(* itfbstudy.bookservice.controller..*(..))")
+    @Pointcut("execution(* itfbstudy.*.controller..*(..))")
     public void auditAction(){
     }
 
+    @Transactional
     @Before(value = "auditAction()")
     public void auditBefore(JoinPoint joinPoint) {
         audit(joinPoint,"START");
         System.out.println("Открытие транзакции...");
     }
+    @Transactional
     @After(value = "auditAction()")
     public void auditAfter(JoinPoint joinPoint){
         audit(joinPoint,"CLOSED");
         System.out.println("Закрытие транзакции....");
     }
+    @Transactional
     @AfterThrowing(value = "auditAction()")
     public void auditThrow(JoinPoint joinPoint) {
         audit(joinPoint,"ERROR");

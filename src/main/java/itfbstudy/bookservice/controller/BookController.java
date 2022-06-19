@@ -2,16 +2,12 @@ package itfbstudy.bookservice.controller;
 
 import io.micrometer.core.annotation.Counted;
 import io.micrometer.core.aop.CountedAspect;
-import io.micrometer.core.instrument.Counter;
-import io.micrometer.core.instrument.Meter;
 import io.micrometer.core.instrument.MeterRegistry;
-import itfbstudy.bookservice.advice.Response;
+import itfbstudy.exception.Response;
 import itfbstudy.bookservice.service.BookService;
 import itfbstudy.bookservice.enteties.Book;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
@@ -67,14 +63,14 @@ public class BookController {
         return service.updateBook(book);
     }
 
-    @GetMapping(value = "/error", produces = APPLICATION_JSON_VALUE)
-    public Response testDefaultControllerAdvice(@RequestParam(required = false, defaultValue = "false") boolean exception)
-            throws Exception {
-        if (exception) {
-            throw new Exception("MyException in testDefaultControllerAdvice");
-        }
-        return new Response("OK");
-    }
+//    @GetMapping(value = "/error", produces = APPLICATION_JSON_VALUE)
+//    public Response testDefaultControllerAdvice(@RequestParam(required = false, defaultValue = "false") boolean exception)
+//            throws Exception {
+//        if (exception) {
+//            throw new Exception("MyException in testDefaultControllerAdvice");
+//        }
+//        return new Response("OK");
+//    }
     @GetMapping("/{id}")
     @Counted(value = "getBookByIdReqCount")
     public Book findBookById(@PathVariable int id) {

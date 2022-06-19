@@ -2,6 +2,7 @@ package itfbstudy.bookservice.enteties;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import itfbstudy.bookservice.enteties.Author;
 import liquibase.pro.packaged.T;
 import lombok.Data;
 import lombok.Getter;

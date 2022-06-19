@@ -1,6 +1,5 @@
-package itfbstudy.bookservice.security;
+package itfbstudy.security;
 
-import itfbstudy.bookservice.advice.BookNotFound;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
 
@@ -15,7 +14,7 @@ import java.nio.file.AccessDeniedException;
 public class SecurityFilter extends GenericFilterBean {
 
     @Override
-    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException, AccessDeniedException {
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
         String headerValue = request.getHeader("authorization");

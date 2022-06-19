@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1655588506403-1
+      author: D34d4l1c3 (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_transaction
+                  name: id
+                  type: INT
+              - column:
+                  name: operation
+                  type: VARCHAR(255)
+              - column:
+                  name: guid
+                  type: VARCHAR(255)
+            tableName: transaction
+  - changeSet:
+      id: 1655588506403-2
+      author: D34d4l1c3 (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: guid
+            constraintName: uc_transaction_guid
+            tableName: transaction
+

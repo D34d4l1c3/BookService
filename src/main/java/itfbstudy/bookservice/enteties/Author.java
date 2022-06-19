@@ -1,18 +1,13 @@
 package itfbstudy.bookservice.enteties;
 
 import com.fasterxml.jackson.annotation.*;
-import itfbstudy.bookservice.repository.AuthorRepository;
-import itfbstudy.bookservice.repository.BooksRepository;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @NoArgsConstructor

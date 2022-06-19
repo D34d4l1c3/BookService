@@ -1,4 +1,4 @@
-package itfbstudy.bookservice.metrics;
+package itfbstudy.metrics;
 
 import io.micrometer.core.aop.CountedAspect;
 import io.micrometer.core.instrument.MeterRegistry;

@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1655592780923-1
+      author: D34d4l1c3 (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: operation
+                  type: CLOB
+            tableName: transaction
+

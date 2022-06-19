@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1655594253817-1
+      author: D34d4l1c3 (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: VARCHAR(255)
+            columnName: guid
+            tableName: transaction
+            validate: true
+  - changeSet:
+      id: 1655594253817-2
+      author: D34d4l1c3 (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: CLOB
+            columnName: operation
+            tableName: transaction
+            validate: true
+

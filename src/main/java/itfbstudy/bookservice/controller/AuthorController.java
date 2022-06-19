@@ -1,19 +1,8 @@
 package itfbstudy.bookservice.controller;
-import io.micrometer.core.instrument.MeterRegistry;
-import itfbstudy.bookservice.advice.AuthorNotFound;
-import itfbstudy.bookservice.advice.Response;
+import itfbstudy.exception.Response;
 import itfbstudy.bookservice.enteties.Author;
 import itfbstudy.bookservice.service.AuthorService;
-import lombok.extern.log4j.Log4j;
-import org.apache.logging.log4j.LogManager;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Target;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
@@ -34,14 +23,14 @@ public class AuthorController {
     public Author addAuthor(@RequestBody Author author) {
         return service.saveAuthor(author);
     }
-    @GetMapping(value = "/error", produces = APPLICATION_JSON_VALUE)
-    public Response testDefaultControllerAdvice(@RequestParam(required = false, defaultValue = "false") boolean exception)
-            throws Exception {
-        if (exception) {
-            throw new Exception("MyException in testDefaultControllerAdvice");
-        }
-        return new Response("OK");
-    }
+//    @GetMapping(value = "/error", produces = APPLICATION_JSON_VALUE)
+//    public Response testDefaultControllerAdvice(@RequestParam(required = false, defaultValue = "false") boolean exception)
+//            throws Exception {
+//        if (exception) {
+//            throw new Exception("MyException in testDefaultControllerAdvice");
+//        }
+//        return new Response("OK");
+//    }
 
     @GetMapping("/{id}")
     public Author findAuthorById(@PathVariable int id){

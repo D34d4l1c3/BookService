@@ -1,0 +1,114 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1655585000735-1
+      author: D34d4l1c3 (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_audit
+                  name: id
+                  type: INT
+              - column:
+                  name: operation
+                  type: VARCHAR(255)
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+              - column:
+                  name: category
+                  type: VARCHAR(255)
+              - column:
+                  name: call_datetime
+                  type: DATETIME
+            tableName: audit
+  - changeSet:
+      id: 1655585000735-2
+      author: D34d4l1c3 (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_author
+                  name: id
+                  type: INT
+              - column:
+                  name: full_name
+                  type: VARCHAR(255)
+            tableName: author
+  - changeSet:
+      id: 1655585000735-3
+      author: D34d4l1c3 (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: authors_id
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: books_id
+                  type: INT
+            tableName: author_books
+  - changeSet:
+      id: 1655585000735-4
+      author: D34d4l1c3 (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_book
+                  name: id
+                  type: INT
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: review
+                  type: VARCHAR(255)
+              - column:
+                  name: genre
+                  type: VARCHAR(255)
+            tableName: book
+  - changeSet:
+      id: 1655585000735-5
+      author: D34d4l1c3 (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: authors_id
+            baseTableName: author_books
+            constraintName: fk_autboo_on_author
+            referencedColumnNames: id
+            referencedTableName: author
+  - changeSet:
+      id: 1655585000735-6
+      author: D34d4l1c3 (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: books_id
+            baseTableName: author_books
+            constraintName: fk_autboo_on_book
+            referencedColumnNames: id
+            referencedTableName: book
+

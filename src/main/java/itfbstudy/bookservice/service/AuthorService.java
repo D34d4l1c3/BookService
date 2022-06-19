@@ -1,5 +1,5 @@
 package itfbstudy.bookservice.service;
-import itfbstudy.bookservice.advice.AuthorNotFound;
+import itfbstudy.bookservice.exception.AuthorNotFound;
 import itfbstudy.bookservice.enteties.Author;
 import itfbstudy.bookservice.repository.AuthorRepository;
 import org.springframework.stereotype.Service;

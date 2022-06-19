@@ -1,11 +1,10 @@
 package itfbstudy.bookservice.service;
 
-import itfbstudy.bookservice.advice.BookNotFound;
+import itfbstudy.bookservice.exception.BookNotFound;
 import itfbstudy.bookservice.enteties.Author;
 import itfbstudy.bookservice.enteties.Book;
 import itfbstudy.bookservice.repository.AuthorRepository;
 import itfbstudy.bookservice.repository.BooksRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
