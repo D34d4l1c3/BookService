@@ -9,7 +9,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -19,10 +18,11 @@ public class SecurityConfig {
                 .csrf().disable()
                 .addFilterAfter(new SecurityFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(new ExceptionHandlerFilter(), SecurityFilter.class)
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests()
-                .antMatchers("/books/*").permitAll()
-                .antMatchers("/authors/*").permitAll();
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers("/books/*").permitAll()
+//                .antMatchers("/authors/*").permitAll();
         return http.build();
     }
 }

@@ -46,7 +46,6 @@ public class AuditAspect {
     }
     private void audit(JoinPoint joinPoint,String statusCode){
         Audit audit = new Audit(joinPoint.getSignature().getName(),
-                //Reference.AuditStatus.START,
                 Reference.AuditStatus.valueOf(statusCode),
                 getReturnClass(joinPoint));
         repository.save(audit);

@@ -1,4 +1,5 @@
 package itfbstudy.bookservice.controller;
+import io.micrometer.core.annotation.Counted;
 import itfbstudy.exception.Response;
 import itfbstudy.bookservice.enteties.Author;
 import itfbstudy.bookservice.service.AuthorService;
@@ -23,18 +24,14 @@ public class AuthorController {
     public Author addAuthor(@RequestBody Author author) {
         return service.saveAuthor(author);
     }
-//    @GetMapping(value = "/error", produces = APPLICATION_JSON_VALUE)
-//    public Response testDefaultControllerAdvice(@RequestParam(required = false, defaultValue = "false") boolean exception)
-//            throws Exception {
-//        if (exception) {
-//            throw new Exception("MyException in testDefaultControllerAdvice");
-//        }
-//        return new Response("OK");
-//    }
 
+    @DeleteMapping("/{id}")
+    @Counted(value = "deleteAuthorReqCount")
+    public String deleteAuthor(@PathVariable int id) {
+        return service.deleteAuthor(id);
+    }
     @GetMapping("/{id}")
     public Author findAuthorById(@PathVariable int id){
-        System.out.println("authorById!!!!!!!! "+id);
         return service.getAuthorById(id);
     }
 

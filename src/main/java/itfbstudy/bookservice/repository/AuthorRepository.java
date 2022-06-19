@@ -8,10 +8,6 @@ import java.util.Set;
 
 @Repository
 public interface AuthorRepository extends JpaRepository<Author,Integer> {
-
     Author findById(int id);
-
-    List<Author> findByFullName(String fullname);
-
     void deleteById(int id);
 }

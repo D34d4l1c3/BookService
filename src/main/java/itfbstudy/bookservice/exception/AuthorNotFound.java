@@ -1,7 +1,6 @@
 package itfbstudy.bookservice.exception;
 
 import itfbstudy.exception.IResponse;
-import lombok.Getter;
 public class AuthorNotFound extends RuntimeException implements IResponse {
     private String message = "Такого автора не существует";
     private int code = 404;

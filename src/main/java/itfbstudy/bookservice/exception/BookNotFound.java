@@ -2,7 +2,7 @@ package itfbstudy.bookservice.exception;
 
 import itfbstudy.exception.IResponse;
 public class BookNotFound extends RuntimeException implements IResponse {
-    private final String message = "Такого книги не существует";
+    private final String message = "Такой книги не существует";
     private final int code = 404;
 
     @Override

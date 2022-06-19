@@ -14,13 +14,8 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping("/books")
 public class BookController {
-    //  Аннотация Autowired здесь означает, что когда Spring находит аннотацию @Autowired,
-    //  он автоматически найдет Bean, который соответствует ей в контексте кода
-    //  (по умолчанию - соответствие типа), и автоматически вставит его в соответствующее место.
-    // @Autowired
     private BookService service;
     private CountedAspect countedAspect;
-//    private Counter counter;
     private MeterRegistry registry;
 
     public BookController(BookService service, CountedAspect countedAspect, MeterRegistry registry) {
@@ -48,7 +43,6 @@ public class BookController {
     @PostMapping("/addBook")
     @Counted(value = "addBookReqCount")
     public Book addBook(@RequestBody Book book) {
-        System.out.println("POOOOOOST");
         return service.saveBook(book);
     }
     @DeleteMapping("/{id}")
@@ -59,18 +53,9 @@ public class BookController {
     @PostMapping("/updateBook/{id}")
     @Counted(value = "updateBookReqCount")
     public Book updateBook(@RequestBody Book book) {
-        System.out.println("test");
         return service.updateBook(book);
     }
 
-//    @GetMapping(value = "/error", produces = APPLICATION_JSON_VALUE)
-//    public Response testDefaultControllerAdvice(@RequestParam(required = false, defaultValue = "false") boolean exception)
-//            throws Exception {
-//        if (exception) {
-//            throw new Exception("MyException in testDefaultControllerAdvice");
-//        }
-//        return new Response("OK");
-//    }
     @GetMapping("/{id}")
     @Counted(value = "getBookByIdReqCount")
     public Book findBookById(@PathVariable int id) {
